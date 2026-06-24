@@ -10,7 +10,9 @@
     "doctor": "CÜNEYT AYANOĞLU",
     "institution": "GSS (Genel Sağ.Sig)",
     "gender": "E",
-    "age": 59
+    "age": "59",
+    "diagnosis": "Sıkışmış serumen",
+    "birth_date": "Kesin Tanı"
   },
   {
     "name": "ÖZER ÖZCAN",
@@ -23,7 +25,9 @@
     "doctor": "CÜNEYT AYANOĞLU",
     "institution": "GSS (Genel Sağ.Sig)",
     "gender": "E",
-    "age": 40
+    "age": "40",
+    "diagnosis": "Kulakta yabancı cisim",
+    "birth_date": "Kesin Tanı"
   },
   {
     "name": "neslihan sarıkçıoğlu",
@@ -36,7 +40,9 @@
     "doctor": "CÜNEYT AYANOĞLU",
     "institution": "GSS (Genel Sağ.Sig)",
     "gender": "K",
-    "age": 41
+    "age": "41",
+    "diagnosis": "Temporomandibüler eklem bozuklukları",
+    "birth_date": "Kesin Tanı"
   },
   {
     "name": "ZAYİDE ESENOĞLU",
@@ -49,7 +55,9 @@
     "doctor": "CÜNEYT AYANOĞLU",
     "institution": "Ücretli Hasta",
     "gender": "K",
-    "age": 66
+    "age": "66",
+    "diagnosis": "Akut farenjit",
+    "birth_date": "Kesin Tanı"
   },
   {
     "name": "SELİN GÖR",
@@ -62,7 +70,9 @@
     "doctor": "CÜNEYT AYANOĞLU",
     "institution": "GSS (Genel Sağ.Sig)",
     "gender": "K",
-    "age": 18
+    "age": "18",
+    "diagnosis": "Otitis eksterna",
+    "birth_date": "Kesin Tanı"
   },
   {
     "name": "SEDA TUNÇ",
@@ -75,7 +85,9 @@
     "doctor": "CÜNEYT AYANOĞLU",
     "institution": "Ücretli Hasta",
     "gender": "K",
-    "age": 34
+    "age": "34",
+    "diagnosis": "Otitis eksterna",
+    "birth_date": "Kesin Tanı"
   },
   {
     "name": "SAMET DİCLE",
@@ -88,7 +100,9 @@
     "doctor": "CÜNEYT AYANOĞLU",
     "institution": "Ücretli Hasta",
     "gender": "E",
-    "age": 26
+    "age": "26",
+    "diagnosis": "Akut sinüzit",
+    "birth_date": "Kesin Tanı"
   },
   {
     "name": "SAKİNE BEKLER",
@@ -101,7 +115,9 @@
     "doctor": "CÜNEYT AYANOĞLU",
     "institution": "GSS (Genel Sağ.Sig)",
     "gender": "K",
-    "age": 72
+    "age": "72",
+    "diagnosis": "Akut farenjit",
+    "birth_date": "Kesin Tanı"
   },
   {
     "name": "RAUF TAYLAN ALAMEHMET",
@@ -114,7 +130,9 @@
     "doctor": "CÜNEYT AYANOĞLU",
     "institution": "Ücretli Hasta",
     "gender": "E",
-    "age": 5
+    "age": "5",
+    "diagnosis": "Akut sinüzit",
+    "birth_date": "Kesin Tanı"
   },
   {
     "name": "RABİA ÖZCAN",
@@ -127,7 +145,9 @@
     "doctor": "CÜNEYT AYANOĞLU",
     "institution": "GSS (Genel Sağ.Sig)",
     "gender": "K",
-    "age": 25
+    "age": "25",
+    "diagnosis": "Akut sinüzit",
+    "birth_date": "Kesin Tanı"
   },
   {
     "name": "ORHAN YILMAZ",
@@ -140,7 +160,9 @@
     "doctor": "CÜNEYT AYANOĞLU",
     "institution": "GSS (Genel Sağ.Sig)",
     "gender": "E",
-    "age": 38
+    "age": "38",
+    "diagnosis": "Sıkışmış serumen",
+    "birth_date": "Kesin Tanı"
   },
   {
     "name": "MERT AYRİÇ",
@@ -153,7 +175,9 @@
     "doctor": "CÜNEYT AYANOĞLU",
     "institution": "GSS (Genel Sağ.Sig)",
     "gender": "E",
-    "age": 20
+    "age": "20",
+    "diagnosis": "Sıkışmış serumen",
+    "birth_date": "Kesin Tanı"
   },
   {
     "name": "MELİKE AKTÜRK",
@@ -166,7 +190,9 @@
     "doctor": "CÜNEYT AYANOĞLU",
     "institution": "Ücretli Hasta",
     "gender": "K",
-    "age": 39
+    "age": "39",
+    "diagnosis": "Sıkışmış serumen",
+    "birth_date": "Kesin Tanı"
   },
   {
     "name": "KÜBRA BÖCEK",
@@ -179,7 +205,9 @@
     "doctor": "CÜNEYT AYANOĞLU",
     "institution": "Ücretli Hasta",
     "gender": "K",
-    "age": 29
+    "age": "29",
+    "diagnosis": "Otitis eksterna",
+    "birth_date": "Kesin Tanı"
   },
   {
     "name": "JALIL HASSAN ZADEH",
@@ -192,7 +220,9 @@
     "doctor": "CÜNEYT AYANOĞLU",
     "institution": "Ücretli Hasta",
     "gender": "E",
-    "age": 40
+    "age": "40",
+    "diagnosis": "Otitis eksterna, mantarlarda",
+    "birth_date": "Kesin Tanı"
   },
   {
     "name": "HATİCE KARAKUŞ",
@@ -205,7 +235,9 @@
     "doctor": "CÜNEYT AYANOĞLU",
     "institution": "GSS (Genel Sağ.Sig)",
     "gender": "K",
-    "age": 45
+    "age": "45",
+    "diagnosis": "Akut sinüzit",
+    "birth_date": "Kesin Tanı"
   },
   {
     "name": "GÜNER İŞLER",
@@ -218,7 +250,9 @@
     "doctor": "CÜNEYT AYANOĞLU",
     "institution": "Ücretli Hasta",
     "gender": "E",
-    "age": 43
+    "age": "43",
+    "diagnosis": "Akut sinüzit",
+    "birth_date": "Kesin Tanı"
   },
   {
     "name": "FERDİ KAYA",
@@ -231,7 +265,9 @@
     "doctor": "CÜNEYT AYANOĞLU",
     "institution": "GSS (Genel Sağ.Sig)",
     "gender": "E",
-    "age": 44
+    "age": "44",
+    "diagnosis": "Sıkışmış serumen",
+    "birth_date": "Kesin Tanı"
   },
   {
     "name": "FATİH ÜNVEREN",
@@ -244,7 +280,9 @@
     "doctor": "CÜNEYT AYANOĞLU",
     "institution": "GSS (Genel Sağ.Sig)",
     "gender": "E",
-    "age": 35
+    "age": "35",
+    "diagnosis": "Akut sinüzit",
+    "birth_date": "Kesin Tanı"
   },
   {
     "name": "ELA NUR BİRCAN",
@@ -257,7 +295,9 @@
     "doctor": "CÜNEYT AYANOĞLU",
     "institution": "Ücretli Hasta",
     "gender": "K",
-    "age": 34
+    "age": "34",
+    "diagnosis": "Akut tonsillit",
+    "birth_date": "Kesin Tanı"
   },
   {
     "name": "DARYA MERKULAYEVA",
@@ -270,7 +310,9 @@
     "doctor": "CÜNEYT AYANOĞLU",
     "institution": "GSS (Genel Sağ.Sig)",
     "gender": "K",
-    "age": 19
+    "age": "19",
+    "diagnosis": "Akut tonsillit",
+    "birth_date": "Kesin Tanı"
   },
   {
     "name": "BEDRİYE PEYAMİSAFA",
@@ -283,7 +325,9 @@
     "doctor": "CÜNEYT AYANOĞLU",
     "institution": "GSS (Genel Sağ.Sig)",
     "gender": "K",
-    "age": 45
+    "age": "45",
+    "diagnosis": "Otitis eksterna",
+    "birth_date": "Kesin Tanı"
   },
   {
     "name": "AZİME ONUK",
@@ -296,7 +340,9 @@
     "doctor": "CÜNEYT AYANOĞLU",
     "institution": "GSS (Genel Sağ.Sig)",
     "gender": "K",
-    "age": 73
+    "age": "73",
+    "diagnosis": "Presbiakuzis",
+    "birth_date": "Kesin Tanı"
   },
   {
     "name": "AHMET EFE ÇAKIR",
@@ -309,6 +355,8 @@
     "doctor": "CÜNEYT AYANOĞLU",
     "institution": "Ücretli Hasta",
     "gender": "E",
-    "age": 2
+    "age": "2",
+    "diagnosis": "Akut nonsüpüratif otitis media, diğer",
+    "birth_date": "Kesin Tanı"
   }
 ]
