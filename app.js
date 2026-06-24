@@ -33,6 +33,7 @@ async function loadContacts() {
   const all = await res.json();
   renderCards(all);
   document.getElementById('subtitle').textContent = `${all.length} hasta`;
+  document.getElementById('msgSummary').textContent = `${all.length} hasta için`;
 }
 
 function renderCards(hastalar) {
@@ -40,11 +41,10 @@ function renderCards(hastalar) {
   cards.innerHTML = '';
   for (let i = 0; i < hastalar.length; i++) {
     const h = hastalar[i];
-    const a = document.createElement('a');
-    a.className = 'wa';
-    a.href = 'whatsapp://send?phone=' + h.cleanPhone + '&text=' + encoded;
-    a.textContent = '💬';
-    a.title = formatPhone(h.cleanPhone);
+    const card = document.createElement('a');
+    card.className = 'card';
+    card.href = 'whatsapp://send?phone=' + h.cleanPhone + '&text=' + encoded;
+    card.title = formatPhone(h.cleanPhone);
 
     const num = document.createElement('div');
     num.className = 'num';
@@ -56,11 +56,13 @@ function renderCards(hastalar) {
       '<div class="date">' + h.last_date + visitInfo + ' · ' + h.age + ' yaş</div>' +
       '<div class="diag">' + h.diagnosis + '</div>';
 
-    const card = document.createElement('div');
-    card.className = 'card';
+    const wa = document.createElement('div');
+    wa.className = 'wa';
+    wa.textContent = '💬';
+
     card.appendChild(num);
     card.appendChild(info);
-    card.appendChild(a);
+    card.appendChild(wa);
     cards.appendChild(card);
   }
 }
