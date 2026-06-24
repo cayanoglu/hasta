@@ -32,7 +32,7 @@ async function loadContacts() {
   const res = await fetch('data/contacts.json');
   const all = await res.json();
   renderCards(all);
-  document.getElementById('subtitle').textContent = `${all.length} kayıt`;
+  document.getElementById('subtitle').textContent = `${all.length} hasta`;
 }
 
 function renderCards(hastalar) {
@@ -51,7 +51,10 @@ function renderCards(hastalar) {
     num.textContent = i + 1;
 
     const info = document.createElement('div');
-    info.innerHTML = '<div class="name">' + h.name + '</div><div class="date">' + h.date + ' · ' + h.age + ' yaş · ' + h.diagnosis + '</div>';
+    const visitInfo = h.visit_count > 1 ? ` (${h.visit_count} ziyaret)` : '';
+    info.innerHTML = '<div class="name">' + h.name + '</div>' +
+      '<div class="date">' + h.last_date + visitInfo + ' · ' + h.age + ' yaş</div>' +
+      '<div class="diag">' + h.diagnosis + '</div>';
 
     const card = document.createElement('div');
     card.className = 'card';
