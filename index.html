@@ -2,48 +2,17 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hasta İletişim Listesi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Hasta Listesi</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>📋 Hasta İletişim Listesi</h1>
-            <div class="stats" id="stats">Yükleniyor...</div>
-        </header>
-
-        <div class="controls">
-            <input type="text" id="searchInput" placeholder="🔍 İsim, telefon veya TC ile ara..." oninput="filterContacts()">
-            <button id="loadBtn" onclick="loadContacts()">🔄 Verileri Yenile</button>
-            <button id="exportBtn" onclick="exportContacts()">📥 JSON İndir</button>
-        </div>
-
-        <div class="table-wrapper">
-            <table id="contactsTable">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Hasta Adı</th>
-                        <th>TC Kimlik No</th>
-                        <th>Telefon</th>
-                        <th>Adres</th>
-                        <th>Tarih</th>
-                        <th>İşlem</th>
-                        <th>Doktor</th>
-                        <th>Kurum</th>
-                        <th>Cinsiyet</th>
-                        <th>Yaş</th>
-                        <th>Aksiyon</th>
-                    </tr>
-                </thead>
-                <tbody id="contactsBody"></tbody>
-            </table>
-        </div>
-
-        <div class="pagination" id="pagination"></div>
-    </div>
-
+    <h1>🏥 Hasta Listesi</h1>
+    <p class="subtitle" id="subtitle">Yükleniyor...</p>
+    
+    <div class="msg-box" id="msgPreview"></div>
+    <div id="cards"></div>
+    
     <script src="app.js"></script>
 </body>
 </html>

@@ -1,168 +1,70 @@
-// Global state
-let allContacts = [];
-let filteredContacts = [];
-let currentPage = 1;
-const contactsPerPage = 50;
+// Mesaj taslağı (markdown dosyasından birebir)
+var MSG = "*Merhaba efendim,*\n\nBen *Op.Dr. Cüneyt Ayanoğlu*\n\nBu mesaj Özel *Vera Tıp Merkezi*, *Kulak Burun Boğaz Hastalıkları Polikliniğimizde*\nalmış olduğunuz muayene hizmeti ile ilgili olarak gönderilmiştir.\n\nTedaviniz ile ilgili önemli olabilecek konular için https://ent.ist/fo adresini ziyaret edebilirsiniz.\n\nTedavi sürecindeki sormak istediğiniz konular ile ilgili veya tedavi sonucu tam iyileşme olmadı ise bu konuyu değerlendirmek için benimle *Whatsapp* üzerinden\nistediğiniz vakitte *irtibata geçebilirsiniz*.\n\nAlmış olduğunuz hizmetler ile ilgili düşüncelerinizi *google profilime* yorum olarak\nyazarsanız memnun olurum. Bunun için https://ent.ist/rev\nadresini ziyaret ediniz.\n\n*Op. Dr. Cüneyt Ayanoğlu*\n*Kulak Burun Boğaz* Hastalıkları Uzmanı\nÖzel Vera Tıp Merkezi\nSefaköy / Küçükçekmece";
 
-// DOM elements
-const contactsBody = document.getElementById('contactsBody');
-const searchInput = document.getElementById('searchInput');
-const statsEl = document.getElementById('stats');
-const paginationEl = document.getElementById('pagination');
-const loadBtn = document.getElementById('loadBtn');
+// encodeURI kullan (encodeURIComponent DEĞİL - virgülü %2C yapıyor, markup bozuluyor)
+var encoded = encodeURI(MSG);
 
-// Load contacts from Excel file
-async function loadContacts() {
-    loadBtn.textContent = '⏳ Yükleniyor...';
-    loadBtn.disabled = true;
+// Preview render - *bold* ve _italic_ → <b> <i>
+document.getElementById('msgPreview').innerHTML = MSG
+  .replace(/\*([^*]+)\*/g, '<b>$1</b>')
+  .replace(/_([^_]+)_/g, '<i>$1</i>')
+  .replace(/\n/g, '<br>');
 
-    try {
-        // Fetch the Excel file
-        const response = await fetch('data/contacts.json');
-        if (!response.ok) {
-            throw new Error('Veri dosyası bulunamadı');
-        }
-        allContacts = await response.json();
-        
-        // Apply current filter
-        filterContacts();
-        
-        statsEl.textContent = `Toplam ${allContacts.length} hasta | Gösterilen: ${filteredContacts.length}`;
-    } catch (error) {
-        console.error('Load error:', error);
-        statsEl.textContent = '❌ Veri yüklenemedi: ' + error.message;
-        contactsBody.innerHTML = `<tr><td colspan="12" style="text-align:center; padding:40px; color:#e74c3c;">
-            Veri yüklenemedi. <code>data/contacts.json</code> dosyasının var olduğundan emin olun.
-        </td></tr>`;
-    } finally {
-        loadBtn.textContent = '🔄 Verileri Yenile';
-        loadBtn.disabled = false;
-    }
+// Hasta verilerini JSON'dan yükle
+async function loadHastalar() {
+  try {
+    const response = await fetch('data/contacts.json');
+    if (!response.ok) throw new Error('Veri yüklenemedi');
+    const contacts = await response.json();
+    
+    // Subtitle güncelle
+    document.getElementById('subtitle').textContent = contacts.length + ' kayıt';
+    
+    renderCards(contacts);
+  } catch (e) {
+    document.getElementById('subtitle').textContent = 'Hata: ' + e.message;
+    console.error(e);
+  }
 }
 
-// Filter contacts based on search input
-function filterContacts() {
-    const query = searchInput.value.toLowerCase().trim();
+function renderCards(hastalar) {
+  var cards = document.getElementById('cards');
+  cards.innerHTML = '';
+  
+  for (var i = 0; i < hastalar.length; i++) {
+    var h = hastalar[i];
     
-    if (!query) {
-        filteredContacts = [...allContacts];
-    } else {
-        filteredContacts = allContacts.filter(c => 
-            c.name.toLowerCase().includes(query) ||
-            c.phone.includes(query) ||
-            c.tc.includes(query) ||
-            c.address.toLowerCase().includes(query) ||
-            c.doctor.toLowerCase().includes(query)
-        );
-    }
+    // whatsapp:// protokolü (iOS + Android çalışıyor)
+    var waLink = 'whatsapp://send?phone=' + h.cleanPhone + '&text=' + encoded;
     
-    currentPage = 1;
-    renderContacts();
-    renderPagination();
-    statsEl.textContent = `Toplam ${allContacts.length} hasta | Gösterilen: ${filteredContacts.length}`;
+    var a = document.createElement('a');
+    a.className = 'wa';
+    a.href = waLink;
+    a.textContent = '💬';
+    a.title = h.phone;
+    
+    var num = document.createElement('div');
+    num.className = 'num';
+    num.textContent = i + 1;
+    
+    var info = document.createElement('div');
+    info.innerHTML = '<div class="name">' + escapeHtml(h.name) + '</div><div class="date">' + h.date + '</div>';
+    
+    var card = document.createElement('div');
+    card.className = 'card';
+    card.appendChild(num);
+    card.appendChild(info);
+    card.appendChild(a);
+    cards.appendChild(card);
+  }
 }
 
-// Render contacts table
-function renderContacts() {
-    const start = (currentPage - 1) * contactsPerPage;
-    const end = start + contactsPerPage;
-    const pageContacts = filteredContacts.slice(start, end);
-    
-    if (pageContacts.length === 0) {
-        contactsBody.innerHTML = `<tr><td colspan="12" style="text-align:center; padding:40px; color:#7f8c8d;">
-            Kayıt bulunamadı
-        </td></tr>`;
-        return;
-    }
-    
-    contactsBody.innerHTML = pageContacts.map((contact, index) => `
-        <tr>
-            <td>${start + index + 1}</td>
-            <td class="patient-name">${escapeHtml(contact.name)}</td>
-            <td>${escapeHtml(contact.tc)}</td>
-            <td><a href="tel:${contact.cleanPhone}" class="phone-link">${escapeHtml(contact.phone)}</a></td>
-            <td title="${escapeHtml(contact.address)}">${escapeHtml(truncate(contact.address, 40))}</td>
-            <td>${escapeHtml(contact.date)}</td>
-            <td title="${escapeHtml(contact.procedure)}">${escapeHtml(truncate(contact.procedure, 30))}</td>
-            <td>${escapeHtml(contact.doctor)}</td>
-            <td>${escapeHtml(contact.institution)}</td>
-            <td>${escapeHtml(contact.gender)}</td>
-            <td>${contact.age}</td>
-            <td>
-                <a href="https://wa.me/${contact.cleanPhone}" target="_blank" class="whatsapp-btn">
-                    💬 WhatsApp
-                </a>
-            </td>
-        </tr>
-    `).join('');
-}
-
-// Render pagination controls
-function renderPagination() {
-    const totalPages = Math.ceil(filteredContacts.length / contactsPerPage);
-    
-    if (totalPages <= 1) {
-        paginationEl.innerHTML = '';
-        return;
-    }
-    
-    let html = '';
-    
-    // Previous button
-    html += `<button class="page-btn" ${currentPage === 1 ? 'disabled' : ''} onclick="changePage(${currentPage - 1})">‹ Önceki</button>`;
-    
-    // Page numbers
-    let startPage = Math.max(1, currentPage - 2);
-    let endPage = Math.min(totalPages, startPage + 4);
-    
-    if (endPage - startPage < 4) {
-        startPage = Math.max(1, endPage - 4);
-    }
-    
-    for (let i = startPage; i <= endPage; i++) {
-        html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
-    }
-    
-    // Next button
-    html += `<button class="page-btn" ${currentPage === totalPages ? 'disabled' : ''} onclick="changePage(${currentPage + 1})">Sonraki ›</button>`;
-    
-    paginationEl.innerHTML = html;
-}
-
-function changePage(page) {
-    const totalPages = Math.ceil(filteredContacts.length / contactsPerPage);
-    if (page >= 1 && page <= totalPages) {
-        currentPage = page;
-        renderContacts();
-        renderPagination();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-}
-
-// Export contacts as JSON
-function exportContacts() {
-    const dataStr = JSON.stringify(filteredContacts, null, 2);
-    const blob = new Blob([dataStr], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `hastalar-${new Date().toISOString().split('T')[0]}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
-}
-
-// Utility functions
 function escapeHtml(text) {
-    if (!text) return '-';
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
+  if (!text) return '-';
+  var div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
 }
 
-function truncate(str, len) {
-    if (!str) return '-';
-    return str.length > len ? str.substring(0, len) + '...' : str;
-}
-
-// Initialize on load
-document.addEventListener('DOMContentLoaded', loadContacts);
+// Başlat
+document.addEventListener('DOMContentLoaded', loadHastalar);
